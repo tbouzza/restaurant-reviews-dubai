@@ -1,0 +1,43 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @restaurant.name %>
+</p>
+
+<p>
+  <strong>Address:</strong>
+  <%= @restaurant.address %>
+</p>
+
+<p>
+  <strong>Stars:</strong>
+  <%= @restaurant.stars %>
+</p>
+
+<p>
+  <strong>More about our chef:</strong>
+  <%= link_to 'Details', chef_restaurant_path(@restaurant), class: 'btn btn-success' %>
+</p>
+
+<ul class="list-group">
+  <%= link_to new_restaurant_review_path(@restaurant), class: 'btn btn-primary' do  %>
+    + Add a review
+  <% end %>
+
+
+  <% @restaurant.reviews.each do |review| %>
+  <li class="list-group-item">
+    <div class="d-flex justify-content-between">
+      <p><%= review.content %></p>
+      <%= link_to 'delete', review_path(review), method: 'delete', class: 'btn btn-danger btn-xs', data: { confirm: 'Are you sure ?'} %>
+
+    </div>
+
+  </li>
+  <% end %>
+</ul>
+
+<%= link_to 'Edit', edit_restaurant_path(@restaurant) %> |
+<%= link_to 'Back', restaurants_path %>
+
